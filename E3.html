@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Esercizio-3</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <!--
+  Dato un input  numerico  quando si preme il bottone si stampa in successione i numeri da 1 al numero dato 
+  e al fondo un numero che corrisponde al 10% del numero in input.
+  -->
+  <input type="number" id="number">
+  <button onclick="successione()">Clicca</button>
+  <br>
+  <p id="out"></p>
+  <script>
+    function successione(){
+      let n=document.getElementById("number").value
+      for(let i=1; i<=n; i++){
+        document.getElementById("out").innerHTML += i + " ";
+      }
+      document.getElementById("out").innerHTML += "<br>" + (n*10)/100;
+    }
+  </script>
+</body>
+
+</html>
