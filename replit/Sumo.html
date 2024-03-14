@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Sumo Game</title>
+    <style>
+        #center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .start1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        #container {
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: lightgreen;
+        }
+
+        #player2 {
+            position: absolute;
+            right: 0;
+            width: 48px;
+        }
+
+        #player1 {
+            position: absolute;
+            left: 0;
+            width: 48px;
+        }
+
+        #line {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #image {
+            width: 70px;
+        }
+
+        #circle {
+            border: 2px solid black;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="start1"><button id="start" onclick="start()">Start</button></div>
+    <div class="start1" id="timer">
+        <p>60</p>
+    </div>
+    <div id="center">
+        <div id="container">
+            <button id="player1" onclick="moveImage('right')">Player 1</button>
+            <button id="player2" onclick="moveImage('left')">Player 2</button>
+            <div id="line">
+                <div id="circle">
+                    <img id="image" src="LogoSumo.png" alt="sumo">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const movingImage = document.getElementById('image');
+        const timerDisplay = document.getElementById('timer');
+        const player1Button = document.getElementById('player1');
+        const player2Button = document.getElementById('player2');
+        let timerSeconds = 60;
+        let timerStarted = false;
+
+        function moveImage(direction) {
+            if (!timerStarted) {
+                alert('Premi "Start" per avviare il timer.');
+                return;
+            }
+
+            if (timerSeconds <= 0) {
+                alert('Il tempo è scaduto!');
+                return;
+            }
+
+            const step = 10;
+            let currentMargin = parseInt(getComputedStyle(movingImage).marginRight) || 0;
+
+            switch (direction) {
+                case 'left':
+                    movingImage.style.marginRight = `${currentMargin + step}px`;
+                    break;
+                case 'right':
+                    movingImage.style.marginRight = `${currentMargin - step}px`;
+                    break;
+                default:
+                    break;
+            }
+
+            checkWinner();
+        }
+
+        function checkWinner() {
+            const imageRect = movingImage.getBoundingClientRect();
+            const player1Rect = player1Button.getBoundingClientRect();
+            const player2Rect = player2Button.getBoundingClientRect();
+
+            if (imageRect.right >= player2Rect.left) {
+                alert('Il Player 1 ha vinto!');
+                resetGame();
+            } else if (imageRect.left <= player1Rect.right) {
+                alert('Il Player 2 ha vinto!');
+                resetGame();
+            }
+        }
+
+        function resetGame() {
+            timerStarted = false;
+            clearInterval(timerInterval);
+            timerSeconds = 60;
+            timerDisplay.innerHTML = timerSeconds;
+            movingImage.style.marginRight = '0px';
+        }
+
+        let timerInterval;
+
+        function start() {
+            if (timerStarted) {
+                return;
+            }
+
+            timerStarted = true;
+
+            timerInterval = setInterval(() => {
+                if (timerSeconds > 0) {
+                    timerSeconds--;
+                    timerDisplay.innerHTML = timerSeconds;
+                } else {
+                    clearInterval(timerInterval);
+                    alert('Il tempo è scaduto!');
+                    resetGame();
+                }
+            }, 1000);
+        }
+    </script>
+
+
+</body>
+
+</html>
