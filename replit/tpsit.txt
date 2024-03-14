@@ -1,0 +1,89 @@
+Esercizi da completare su replit 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problemi di base per competenze sulla decodifica</title>
+
+  <style>
+       
+    #es1 {
+      text-align: center;
+      background-color: grey;
+      border: 1px solid black;
+    }
+    #Out1 {
+      color: red;
+    }
+    #es2 {
+      background-color: #d6de68;
+      border: 1px solid black;
+      text-align: center;
+    }
+   
+  </style>
+
+
+ 
+</head>
+<body>
+   <div id="es1">
+  <h2>  Problema 1</h2>
+     <p> Dato un bottone ripeti scrivere i numeri da 1 a 10 in riga eda 1 a 10 in colonna</p>
+<button onclick="Problema1()"> Ripeti </button>
+     <p id="Out1"></p>
+     </div>
+
+  <div id="es2">
+    <h2>  Problema 2</h2>
+    <p>Dato un input di tipo numerico, dato un bottone che chiama una funzione stampare i numeri che vanno da 0 all'input dato (provare con n = 1000)</p>
+
+    <input type="text" id="number">
+    <button onclick="Problema2()">Ordine</button>
+    <p id="Out2"></p>
+       </div>
+ 
+
+  <div id="es3">
+    <h2>  Problema 3</h2>
+    <p>Dati 2 input (n1 e n2) stampare i numeri compresi tra n1 e n2</p>
+       </div>
+
+
+  <div id="es4">
+    <h2>  Problema 4</h2>
+    <p>Stampare la tabellina dell'input dato</p>
+       </div>
+  <div id="es5">
+    <h2>  Problema 5</h2>
+    <p>Dati 3 bottoni stampare la tabellina del 11, 12 e 13 per ogni bottone con colori diversi</p>
+       </div>
+<script>
+  function Problema1() {
+    let str = "";
+    let str1 =  "";
+    for (let i = 1; i <= 10; i++) {
+
+      str = str + " " + i;
+      str1 = str1 + "<br>" + i;
+  }    
+    document.getElementById("Out1").innerHTML = str + str1;
+  }
+  function Problema2(){
+    let n = document.getElementById("number").value;
+    let str = "";
+    for (let i = 0; i <= n; i++) {
+      str = str + " " + i;
+    }
+    document.getElementById("Out2").innerHTML = str;
+  }
+</script>
+ 
+ 
+</body>
+</html>

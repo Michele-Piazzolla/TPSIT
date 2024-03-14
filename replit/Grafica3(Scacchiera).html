@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scacchiera</title>
+    <style>
+        .schacchiera_tavolo {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+        }
+
+        .schacchiera_quadrante {
+            width: 50px;
+            height: 50px;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .white {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="schacchiera" class="schacchiera_tavolo"></div>
+
+<script>
+    function creaSchacchiera() {
+        var board = document.getElementById("schacchiera");
+
+        for (var row = 0; row < 8; row++) {
+            for (var col = 0; col < 8; col++) {
+                var square = document.createElement("div");
+                square.classList.add("schacchiera_quadrante");
+
+                
+                if ((row + col) % 2 === 0) {
+                    square.classList.add("white");
+                } else {
+                    square.classList.add("black");
+                }
+
+                board.appendChild(square);
+            }
+        }
+    }
+
+    creaSchacchiera();
+</script>
+
+</body>
+</html>

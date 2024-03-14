@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problemi di base per competenze sulla decodifica</title>
+
+  <style>
+    #es1 {
+      text-align: center;
+      background-color: grey;
+      border: 1px solid black;
+    }
+
+    #Out1 {
+      color: red;
+    }
+
+    #es2 {
+      background-color: #d6de68;
+      border: 1px solid black;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="es1">
+    <h2>Problema 1</h2>
+    <p>Dato un bottone ripeti, scrivere i numeri da 1 a 10 in riga e da 1 a 10 in colonna</p>
+    <button onclick="Problema1()">Ripeti</button>
+    <p id="Out1"></p>
+  </div>
+
+  <div id="es2">
+    <h2>Problema 2</h2>
+    <p>Dato un input di tipo numerico, dato un bottone che chiama una funzione stampare i numeri che vanno da 0
+      all'input dato (provare con n = 1000)</p>
+    <input type="number" id="number"> <!-- Modificato in "type" da "text" -->
+    <button onclick="Problema2()">Ordine</button>
+    <p id="Out2"></p>
+  </div>
+
+  <div id="es3">
+    <h2>Problema 3</h2>
+    <p>Dati 2 input (n1 e n2) stampare i numeri compresi tra n1 e n2</p>
+    <input type="number" id="n1"> <!-- Aggiunto un input per n1 -->
+    <input type="number" id="n2"> <!-- Aggiunto un input per n2 -->
+    <button onclick="Problema3()">Stampa Numeri</button> <!-- Aggiunto un pulsante per Problema 3 -->
+    <p id="Out3"></p> <!-- Aggiunto un paragrafo per l'output -->
+  </div>
+
+  <div id="es4">
+    <h2>Problema 4</h2>
+    <p>Stampare la tabellina dell'input dato</p>
+    <input type="number" id="inputNumber"> <!-- Aggiunto un input per l'input dato -->
+    <button onclick="Problema4()">Calcola Tabellina</button> <!-- Aggiunto un pulsante per Problema 4 -->
+    <div id="tableResult"></div> <!-- Aggiunto un div per l'output della tabellina -->
+  </div>
+
+  <div id="es5">
+    <h2>Problema 5</h2>
+    <p>Dati 3 bottoni stampare la tabellina del 11, 12 e 13 per ogni bottone con colori diversi</p>
+    <button onclick="Problema5(11)">Tabellina 11</button>
+    <button onclick="Problema5(12)">Tabellina 12</button>
+    <button onclick="Problema5(13)">Tabellina 13</button>
+    <div id="table11Result"></div>
+    <div id="table12Result"></div>
+    <div id="table13Result"></div>
+  </div>
+
+  <script>
+    function Problema1() {
+      let str = "";
+      let str1 = "";
+      for (let i = 1; i <= 10; i++) {
+        str = str + " " + i;
+        str1 = str1 + "<br>" + i;
+      }
+      document.getElementById("Out1").innerHTML = str + str1;
+    }
+
+    function Problema2() {
+      let n = document.getElementById("number").value;
+      let str = "";
+      for (let i = 0; i <= n; i++) {
+        str = str + " " + i;
+      }
+      document.getElementById("Out2").innerHTML = str;
+    }
+
+    function Problema3() {
+      let n1 = parseInt(document.getElementById("n1").value);
+      let n2 = parseInt(document.getElementById("n2").value);
+      let result = "";
+      for (let i = n1; i <= n2; i++) {
+        result += i + " ";
+      }
+      document.getElementById("Out3").textContent = result;
+    }
+
+    function Problema4() {
+      let inputNumber = parseInt(document.getElementById("inputNumber").value);
+      let result = "";
+      for (let i = 1; i <= 10; i++) {
+        result += inputNumber + " x " + i + " = " + (inputNumber * i) + "<br>";
+      }
+      document.getElementById("tableResult").innerHTML = result;
+    }
+
+    function Problema5(number) {
+      let result = "";
+      for (let i = 1; i <= 10; i++) {
+        let color = "red";
+        if (number === 12) {
+          color = "blue";
+        } else if (number === 13) {
+          color = "green";
+        }
+        result += `<span style="color: ${color};">${number} x ${i} = ${number * i}</span><br>`;
+      }
+      if (number === 11) {
+        document.getElementById("table11Result").innerHTML = result;
+      } else if (number === 12) {
+        document.getElementById("table12Result").innerHTML = result;
+      } else if (number === 13) {
+        document.getElementById("table13Result").innerHTML = result;
+      }
+    }
+  </script>
+</body>
+
+</html>

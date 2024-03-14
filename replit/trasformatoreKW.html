@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>trasformatore KW -> KW/H</title>
+        <style>
+            #trasforma_box{
+                border: 1px solid #000000;
+                padding: 10px;
+            }
+            #pannelli{
+                border: 1px solid #000000;
+                padding: 10px;
+                background-color: #7fffd4;
+
+            }
+            </style>
+    </head>
+    <body>
+        <div id="trasforma_box">
+            <p>esercizio recupero input e output: scrivi un dato in ingresso una misura in kw, trasforma questa in una misura correlata al tempo.
+                crea un div contenitore degli input e degli output neccessari.</p>
+            <label for="inputkw">kw:</label>
+            <input type="text" id="inputkw" name="inputkw">
+            <label for="inputh">Ore:</label>
+            <input type="text" id="inputh" name="inputh">
+            <button onclick="trasforma()">calcola</button>
+            <p id="risultato"></p>
+        </div>
+        <div id="pannelli">
+            <p>esercizio 2: crea un'ulteriore div con lo sfondo a tuo piacere che contiene la potenza dei panelli fotovoltaici che possediamo.
+                calcolare il totale della potenza basata sul numero dei panelli totali.</p>
+            <label for="potenzapannelli">Potenza dei pannelli:</label>
+            <input type="text" id="potenzapannelli" name="potenzapannelli">
+            <label for="qpannelli">quantita di pannelli:</label>
+            <input type="text" id="qpannelli" name="qpannelli">
+            <button onclick="pannelli()">calcola</button>
+            <p id="risultato2"></p>
+        </div>
+
+    <script>
+    function trasforma(){
+        let kw=document.getElementById("inputkw").value;
+        let h=document.getElementById("inputh").value;
+        let kwh=kw*h;
+        document.getElementById("risultato").innerHTML=kwh;
+    }
+    function pannelli(){
+        let potenza=document.getElementById("potenzapannelli").value;
+        let quantita=document.getElementById("qpannelli").value;
+        let tot=potenza*quantita;
+        document.getElementById("risultato2").innerHTML=tot;
+    }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Generatore di Numeri Casuali</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1>Generatore di numeri tra 1 e 6</h1>
+        <p>Scegli tra le seguenti opzioni:</p>
+        <button onclick="generaNumeriCasuali()">Numeri non necessariamente interi</button>
+        <p id="output1"></p>
+        <button onclick="generaNumeriInteri()">Numeri interi</button>
+        <p id="output2"></p>
+        <script>
+            function generaNumeriCasuali() {
+                for (let i = 0; i < 999; i++) {
+                    let numero = Math.random() * 5 + 1;
+                    document.getElementById("output1").innerHTML += numero.toFixed(2) + " ";
+                }
+            }
+
+            function generaNumeriInteri() {
+                for (let i = 0; i < 999; i++) {
+                    let numero = Math.floor(Math.random() * 6) + 1;
+                    document.getElementById("output2").innerHTML += numero + " ";
+                }
+            }
+        </script>
+    </body>
+</html>

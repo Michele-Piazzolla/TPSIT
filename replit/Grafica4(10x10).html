@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tavola 10x10</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(10, 50px);
+            grid-template-rows: repeat(10, 50px);
+            gap: 5px;
+        }
+
+        .grid-item {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        .grid-item.pari {
+            background-color: #eb0000; 
+        }
+
+        
+        .grid-item.dispari {
+            background-color: #0825e5; 
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container" id="gridContainer"></div>
+
+    <script>
+        const gridContainer = document.getElementById('gridContainer');
+
+        for (let i = 1; i <= 100; i++) {
+            let cell = document.createElement('div');
+            cell.className = 'grid-item ' + (i % 2 === 0 ? 'pari' : 'dispari');
+            gridContainer.appendChild(cell);
+        }
+    </script>
+</body>
+</html>

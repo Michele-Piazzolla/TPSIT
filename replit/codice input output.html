@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Problemi di codifica e decodifica</title>
+</head>
+
+<body>
+   
+    <!-- testo visualizzato nella pagina -->
+  <h2>Data la stringa messa in input calcolo la sua lunghezza.<br> Se la stringa è un numero binario, sapendo quanto è
+    lunga, conoscerò il numero di bit che la compongono.</h2>
+   
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    <br>
+  <h3>calcolo prima stringa in input</h3>
+  <!-- testo casella inserimento input -->
+  <label for="mioInput1">Input prima Stringa:</label><br>
+  <!-- input casella inserimento codice -->
+  <input type="text" id="mioinput1"><br>
+  <!-- bottone avviamento funcution in script -->
+  <button onclick="AnalisiStringa1()">Calcola la lunghezza della prima stranga</button>
+<br>
+
+  <!-- secondo input button  -->
+  
+  <h3>calcolo seconda stringa in input</h3>
+  <label for="mioInput2">Input seconda Stringa:</label><br>
+  <input type="text" id="mioinput2"><br>
+  <button onclick="AnalisiStringa2()">Calcola la lunghezza della seconda stringa</button>
+<br><br>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<br><br>
+  <!-- secondo input button  -->
+  
+  <button onclick="SommaStringhe()">calcola la somma delle due stringhe</button>
+  
+  
+  <div>
+    <p id="risultato1"></p>
+    <p id="risultato2"></p>
+    <p id="somma"></p>
+  </div>
+
+  <script>
+    function AnalisiStringa1() {
+      let StrInput;
+      StrInput = document.getElementById('mioinput1').value;
+
+      document.getElementById('risultato1').innerHTML = StrInput + "di lunghezza=" + StrInput.length;
+    }
+    function AnalisiStringa2() {
+      let StrInput;
+      StrInput = document.getElementById('mioinput2').value;
+
+      document.getElementById('risultato2').innerHTML = StrInput + "di lunghezza=" + StrInput.length;
+    }
+    function SommaStringhe() {
+    
+        let primoInput = document.getElementById('mioinput1').value;
+    
+        let secondoInput = document.getElementById('mioinput2').value;
+    
+        let lunghezzaSomma = mioinput1.length + mioinput2.length;
+    
+        document.getElementById('somma').innerHTML = "la somma delle due stromghe è di :  " + lunghezzaSomma.length;
+
+
+    }
+  </script>
+</body>
+
+</html> 
+</body>
+</html>

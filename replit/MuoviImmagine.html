@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Palla Mobile</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Per evitare lo scrolling */
+    }
+    
+    #container {
+      position: absolute;
+      bottom: 8px;
+      right: 16px;
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    button {
+      background-color: blue;
+      color: white;
+      height: 50px;
+      width: 100px;
+      margin: 5px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    
+    #palla {
+      height: 150px;
+      width: 150px;
+      position: absolute;
+      bottom: 50%;
+      right: 50%;
+      transform: translate(50%, 50%); /* Per posizionare la palla al centro */
+    }
+  </style>
+</head>
+
+<body>
+  <img id="palla" src="https://www.sigmapubblicita.it/905-thickbox_default/03057-pallone-da-calcio-antistress.jpg">
+  <div id="container">
+    <button id="sinistra" onclick="moveImage('left')">Sinistra</button>
+    <button id="alto" onclick="moveImage('up')">Alto</button>
+    <button id="destra" onclick="moveImage('right')">Destra</button>
+    <button id="basso" onclick="moveImage('down')">Basso</button>
+  </div>
+
+  <script>
+    const movingImage = document.getElementById('palla');
+
+    function moveImage(direction) {
+      const step = 10; // Modifica il valore per regolare la velocità
+      let currentLeft = parseInt(getComputedStyle(movingImage).left) || 0;
+      let currentTop = parseInt(getComputedStyle(movingImage).top) || 0;
+
+      switch (direction) {
+        case 'up':
+          movingImage.style.top = `${currentTop - step}px`;
+          break;
+        case 'down':
+          movingImage.style.top = `${currentTop + step}px`;
+          break;
+        case 'left':
+          movingImage.style.left = `${currentLeft - step}px`;
+          break;
+        case 'right':
+          movingImage.style.left = `${currentLeft + step}px`;
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+
+</body>
+
+</html>

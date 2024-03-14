@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Math Random</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1>Generatore di numeri tra 1 e 6<br>Scegliere tra le varie opzioni</h1>
+        <button onclick="casuali()">Numeri non per forza interi</button>
+        <p id="output1"></p>
+        <button onclick="interi()">Numeri interi</button>
+        <p id="output2"></p>
+        <script>
+            function casuali(){
+                for(let i=0;i<999;i++){
+                    let numero=Math.random()*5+1;
+                    document.getElementById("output1").innerHTML+=numero+" ";
+                }
+            }
+            function interi(){
+                for(let i=0;i<999;i++){
+                    let numero=Math.round(Math.random()*5+1);
+                    document.getElementById("output2").innerHTML+=numero+" ";
+                }
+            }
+        </script>
+    </body>
+</html>

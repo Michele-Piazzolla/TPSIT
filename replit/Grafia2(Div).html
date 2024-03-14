@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divs</title>
+  <style>
+    .dynamic-div {
+      border: 1px solid;
+      width: 10px; 
+      height: 10px; 
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="numberOfDivs">Quanti div si vogliono?:</label>
+  <input type="number" id="numberOfDivs">
+  <button onclick="createDivs()">Crea Divs</button>
+
+  <script>
+    function createDivs() {
+      var numberOfDivs = document.getElementById("numberOfDivs").value;
+      document.getElementById("container").innerHTML = "";
+
+      for (var i = 0; i < numberOfDivs; i++) {
+        
+        var newDiv = document.createElement("div"); //creazione nuovo div con il ciclo
+        
+        newDiv.classList.add("dynamic-div");     //nuova classe dei div
+        var randomColor = getRandomColor();    //random color (cercata online)
+        newDiv.style.backgroundColor = randomColor;
+        
+        document.getElementById("container").appendChild(newDiv);
+      }
+    }
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];        //funzione random color
+      }
+      return color;
+    }
+  </script>
+
+  <div id="container"></div>
+
+</body>
+</html>

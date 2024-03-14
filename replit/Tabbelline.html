@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contatore e Tabelline</title>
+<style>
+
+  body {
+    background-color: #add8e6; /* Colore di sfondo azzurro */
+  }
+  .tabellinaDiv {
+    border: 1px solid #000; /* Bordo nero */
+    background-color: #fff; /* Sfondo bianco */
+    /*margin-bottom: 10px;*/
+    padding: 30px;
+    margin: 50px;
+    text-align: center;
+
+  }
+  .BT{
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<script>
+  var contatore = 1;
+
+  function avviaContatore() {
+    var intervallo = setInterval(function() {
+      if (contatore <= 5) {
+        console.log(contatore);
+        contatore++;
+      } else {
+        clearInterval(intervallo);
+        stampaTabelline();
+      }
+    }, 1000);
+  }
+
+  function stampaTabelline() {
+    var tabellineDiv = document.getElementById('tabellineDiv');
+    tabellineDiv.innerHTML = '';
+
+    for (var i = 1; i <= 10; i++) {
+      var tabellinaDiv = document.createElement('div');
+      tabellinaDiv.classList.add('tabellinaDiv');
+      tabellinaDiv.innerHTML = '<h2>Tabellina del ' + i + ':</h2>';
+      for (var j = 1; j <= 10; j++) {
+        tabellinaDiv.innerHTML += i * j + '   ';
+      }
+      tabellineDiv.appendChild(tabellinaDiv);
+    }
+  }
+</script>
+<div class="BT"><button onclick="avviaContatore()">Avvia Calcolo stampaTabelline</button></div>
+
+<div id="tabellineDiv"></div>
+
+</body>
+</html>
