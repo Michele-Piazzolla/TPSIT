@@ -1,55 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Grafica 5</title>
-        <style>
-            .bomba { grid-area: bomba; }
-            .pizza { grid-area: pizza; }
-            .cont1 { grid-area: cont1; }
-            .cont2 { grid-area: cont2; }
-            .tboard{
-                display: grid;
-                grid-template-areas:
-                    'bomba pizza'
-                    'cont1 cont2';
-                gap: 10px;
-                background-color: #000000;
-                padding: 10px;
-                width: 140px;
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafica 5</title>
+
+    <style>
+        .bomba {
+            width: 25px;
+            height: 25px;
+            border: 1px solid black;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        .pizza {
+            width: 25px;
+            height: 25px;
+            border: 1px solid black;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        img {
+            width: 100%;
+            /* Per far sì che l'immagine riempia completamente il div */
+            height: 100%;
+            object-fit: cover;
+            /* Per adattare l'immagine al div mantenendo le proporzioni */
+        }
+        #square{
+            text-align: center;
+            border: solid 2px black;
+            padding: 5px;
+            margin: 5px;
+   
+        }
+    </style>
+</head>
+
+<body>
+    <!--Inserire all'interno di una tboard composta da una griglia di div 10x10, come descritto nell'esercizio di grafica 3, due immagini: una raffigurante una pizza e l'altra una bomba, fornite in allegato. Aggiungere negli eventi onclick di entrambe le immagini delle funzioni che registrano il numero di clic effettuati su ciascuna immagine. I quadrati della griglia devono essere di dimensioni 25x25 pixel. Ogni volta che si clicca sull'immagine della pizza o sulla bomba, il programma deve registrare il numero totale di clic effettuati su ciascuna delle due immagini-->
+    
+    <div id="square"></div>
+    <div id="contatore_pizza"></div>
+    <div id="contatore_bomba"></div>
+    
+    <script>
+        let cont_bomba = 0;
+        let cont_pizza = 0;
+        for (let i = 1; i <= 100; i++) {
+            if (i % 2 != 0) {
+                document.getElementById("square").innerHTML += "<div class='bomba' onclick='conteggio_bomba()'><img src='bomba.jpg'></div>";
             }
-            .tboard>div{
-                background-color: #ffffff;
-                text-align: center;
-                padding: 20px;
-                font-size: 20px;
-                width: 25px;
-                height: 25px;
+            else {
+                document.getElementById("square").innerHTML += "<div class='pizza' onclick='conteggio_pizza()'><img src='pizza.jpg'></div>";
             }
-            #img{
-                width: 40px;
+            if (i > 0 && i % 10 == 0) {
+                document.getElementById("square").innerHTML += "<br>";
             }
-        </style>
-    </head>
-    <body>
-        <div class="tboard">
-            <div class="bomba"><img src="bomba.jpg" id="img" onclick="bomba()"></div>
-            <div class="pizza"><img src="pizza.jpg" id="img" onclick="pizza()"></div>
-            <div class="cont1"><p id="output1"></p></div>  
-            <div class="cont2"><p id="output2"></p></div>
-        </div>
-        <script>
-            let contbomba=0;
-            let contpizza=0;
-            function bomba(){
-                contbomba++;
-                document.getElementById("output1").innerHTML=contbomba;
-            }
-            function pizza(){
-                contpizza++;
-                document.getElementById("output2").innerHTML=contpizza;
-            }
-        </script>
-    </body>
+        }
+        function conteggio_pizza() {
+            cont_pizza++;
+            document.getElementById("contatore_pizza").innerHTML = "contatore click pizza: " + cont_pizza;
+        }
+        function conteggio_bomba() {
+            cont_bomba++;
+            document.getElementById("contatore_bomba").innerHTML = "contatore click bomba: " + cont_bomba;
+        }
+    </script>
+
+</body>
+
 </html>
