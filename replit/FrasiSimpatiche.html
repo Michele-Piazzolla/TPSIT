@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>FrasiSimpatiche</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      background-image: url(BackGround-FrasiSimpatiche.jpeg);
+      background-size: 30%;
+    }
+
+    .PrimoContenitore {
+      margin: 40px;
+      border: 2px solid black;
+      padding: 20px;
+      text-align: center;
+      background-color: aliceblue;
+    }
+
+    .btn-container {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid black;
+      height: 80px;
+      width: 160px;
+      text-align: center;
+    }
+
+    .result-container {
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px solid black;
+      font-size: 1.2em;
+    }
+
+    
+    .shadow-div {
+      margin: 40px;
+      padding: 20px;
+      border: 2px solid black;
+      background-color: #f8f9fa;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <br><br>
+  <div class="container">
+    <h1 class="text-center">Frasi Simpatiche (NSFW)</h1><br>
+    <div class="PrimoContenitore shadow-div">
+      <div class="container text-center">
+        <h2>Contenuti degli Array</h2>
+        <div id="arrayContents" class="result-container"></div>
+      </div>
+    </div>
+
+    <div class="row btn-container">
+      <div class="col">
+        <div class="PrimoContenitore shadow-div">
+          <div class="container text-center">
+            <h2>Aggiungi Elemento</h2>
+            <button id="addSoggetto" class="btn btn-info">Soggetto</button>
+            <button id="addVerbo" class="btn btn-info">Verbo</button>
+            <button id="addComplemento" class="btn btn-info">Complemento Oggetto</button>
+            <button id="addAggettivo" class="btn btn-info">Aggettivo</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="PrimoContenitore shadow-div">
+          <div class="container text-center">
+            <h2>Elimina Elemento</h2>
+            <button id="deleteSoggetto" class="btn btn-danger">Soggetto</button>
+            <button id="deleteVerbo" class="btn btn-danger">Verbo</button>
+            <button id="deleteComplemento" class="btn btn-danger">Complemento Oggetto</button>
+            <button id="deleteAggettivo" class="btn btn-danger">Aggettivo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="PrimoContenitore shadow-div">
+        <div class="container text-center">
+          <h2>Genera Frasi</h2>
+          <button id="generateSinglePhrase" class="btn btn-success">Genera 1 frase</button>
+          <button id="generateTenPhrases" class="btn btn-success">Genera 10 frasi</button>
+          <button id="generateAllPossiblePhrases" class="btn btn-success">Genera tutte le frasi possibili</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Div per visualizzare le frasi generate -->
+    <div class="PrimoContenitore shadow-div">
+      <div class="container text-center">
+        <h2>Frasi Generate</h2>
+        <div id="generatedPhrases" class="result-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let soggetti = [];
+    let verbi = [];
+    let complementi_oggetto = [];
+    let aggettivi = [];
+
+    
+    soggetti = ["il pedofilo di Minelli", "quello spastico di Beltrax", "il negro in questione", "Il profugo clandestino", "il prof", "la bidella", "gli alunni", "la preside", "quel bastardo di Finelli", "il tossico della stazione", "Quel macho di Rosmino", "il filippino sottomesso di Basiglio", "Izzo", ]
+    verbi = ["picchia", "urla contro", "mangia", "fuma", "dorme", "si guarda", "guarda ossessivamente", "ride", "uccide", "si droga", "prepara il tacchino", "morde", "lecca", "si lancia contro", "tira testate contro", "defeca"];
+    complementi_oggetto = ["il bagno", "le unchie", "il vicino", "la 5*B LES", "L'aula affiango", "la pizza", "il telefono", "il film", "il tipo alla sua destra", "il quaderno", "il banco", "la finestra", ];
+    aggettivi = ["rincoglionito", "tossico", "ludopatico", "dipendente", "Odioso", "Rozzo", "Stupido", "Insignificante", "Potente", "inferiore", "Stordito", "Pazzo"];
+
+    document.getElementById('addSoggetto').addEventListener('click', function () {
+      let soggetto = prompt("Inserisci il soggetto:");
+      soggetti.push(soggetto);
+      updateArrayContents();
+    });
+
+    document.getElementById('addVerbo').addEventListener('click', function () {
+      let verbo = prompt("Inserisci il verbo:");
+      verbi.push(verbo);
+      updateArrayContents();
+    });
+
+    document.getElementById('addComplemento').addEventListener('click', function () {
+      let complemento = prompt("Inserisci il complemento oggetto:");
+      complementi_oggetto.push(complemento);
+      updateArrayContents();
+    });
+
+    document.getElementById('addAggettivo').addEventListener('click', function () {
+      let aggettivo = prompt("Inserisci l'aggettivo:");
+      aggettivi.push(aggettivo);
+      updateArrayContents();
+    });
+
+    document.getElementById('deleteSoggetto').addEventListener('click', function () {
+      if (soggetti.length > 0) {
+        soggetti.pop();
+        updateArrayContents();
+      } else {
+        alert("Nessun soggetto da eliminare!");
+      }
+    });
+
+    document.getElementById('deleteVerbo').addEventListener('click', function () {
+      if (verbi.length > 0) {
+        verbi.pop();
+        updateArrayContents();
+      } else {
+        alert("Nessun verbo da eliminare!");
+      }
+    });
+
+    document.getElementById('deleteComplemento').addEventListener('click', function () {
+      if (complementi_oggetto.length > 0) {
+        complementi_oggetto.pop();
+        updateArrayContents();
+      } else {
+        alert("Nessun complemento oggetto da eliminare!");
+      }
+    });
+
+    document.getElementById('deleteAggettivo').addEventListener('click', function () {
+      if (aggettivi.length > 0) {
+        aggettivi.pop();
+        updateArrayContents();
+      } else {
+        alert("Nessun aggettivo da eliminare!");
+      }
+    });
+
+    document.getElementById('generateSinglePhrase').addEventListener('click', function () {
+      generatePhrases(1);
+    });
+
+    document.getElementById('generateTenPhrases').addEventListener('click', function () {
+      generatePhrases(10);
+    });
+
+    document.getElementById('generateAllPossiblePhrases').addEventListener('click', function () {
+      generatePhrases(100);
+    });
+
+    function updateArrayContents() {
+      let arrayContentsDiv = document.getElementById('arrayContents');
+      arrayContentsDiv.innerHTML = `<strong>Soggetti:</strong> ${soggetti.join(', ')}<br><br>
+                             <strong>Verbi:</strong> ${verbi.join(', ')}<br><br>
+                             <strong>Complementi Oggetto:</strong> ${complementi_oggetto.join(', ')}<br><br>
+                             <strong>Aggettivi:</strong> ${aggettivi.join(', ')}`;
+    }
+
+    function generatePhrases(num) {
+      let generatedPhrasesDiv = document.getElementById('generatedPhrases');
+      generatedPhrasesDiv.innerHTML = '';
+
+      let phrases = [];
+      for (let i = 1; i <= num; i++) {
+        let phrase = `${i}) ${getRandomElement(soggetti)} ${getRandomElement(verbi)} ${getRandomElement(complementi_oggetto)} ${getRandomElement(aggettivi)}`;
+        phrases.push(phrase);
+      }
+
+      generatedPhrasesDiv.innerHTML = phrases.join('<br>');
+    }
+
+    function getRandomElement(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    updateArrayContents();
+  </script>
+</body>
+
+</html>
+
