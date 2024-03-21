@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>DrinkBar V1</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      background-image: url(bar.jpg);
+      background-size: cover;
+      font-family: 'Times New Roman', Times, serif;
+      background-color: rgb(34, 140, 226);
+    }
+
+    .PrimoContenitore {
+      margin: 40px;
+      border: 2px solid black;
+      padding: 20px;
+      text-align: center;
+      background-color: aliceblue;
+    }
+
+    .btn-container {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid black;
+      height: 80px;
+      width: 160px;
+      text-align: center;
+      font-size: 1.8em;
+    }
+
+    .result-container {
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px solid black;
+      font-size: 1.2em;
+    }
+
+    
+    .shadow-div {
+      margin: 40px;
+      padding: 20px;
+      border: 2px solid black;
+      background-color: #f8f9fa;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+    .container-fluid{
+        background-color: rgb(34, 140, 226);
+        height: 55px;
+        text-align: center;
+        
+        
+    }
+    .navbar-brand{
+        color: antiquewhite;
+        font-size: 1.8em;
+        text-align: center;
+
+    }
+    .btn-info{
+        font-size: 1.25em;
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-cup-straw"
+          viewBox="0 0 16 16">
+          <path
+            d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82q0 .069-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87s-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A1 1 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278M9.768 4.607A14 14 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.3 3.3 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a6 6 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69s2.081-.441 2.438-.69c.042-.029.09-.094.102-.215l.852-8.03a6 6 0 0 1-.435.127 9 9 0 0 1-.89.17zM4.467 4.884s.003.002.005.006zm7.066 0-.005.006zM11.354 5a3 3 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222" />
+        </svg>
+        DrinkBar V1
+      </a>
+    </div>
+  </nav>
+  <br><br>
+  <div class="container">
+    <div class="PrimoContenitore shadow-div">
+      <div class="container text-center">
+        <h2>Azioni</h2>
+        <hr>
+        <button id="Add-Drink" class="btn btn-info">Aggiungi Drink</button>
+        <button id="Delete-Drink" class="btn btn-info">Elimina Drink</button>
+        <button id="Ordina-Drink" class="btn btn-info">Ordina</button>
+        <button id="Cont-Drink" class="btn btn-info">Elimina Ordine</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row btn-container">
+    <div class="col">
+      <div class="PrimoContenitore shadow-div">
+        <div class="container text-center">
+          <h2>Listino Drink</h2>
+          <hr>
+          <div id="listino" class="result-container"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="PrimoContenitore shadow-div">
+        <div class="container text-center">
+          <h2>Ordinazioni</h2>
+          <hr>
+          <div id="ordinazioni" class="result-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let listino = ["Mojito", "Cuba Libre", "Spritz", "Negroni", "Bellini"];
+    let ordini = [];
+
+    document.getElementById('Add-Drink').addEventListener('click', function () {
+      let drink = prompt("Inserisci il nome del drink da aggiungere:");
+      if (drink) {
+        listino.push(drink);
+        updateListino();
+      }
+    });
+
+    document.getElementById('Delete-Drink').addEventListener('click', function () {
+      let index = parseInt(prompt("Inserisci il numero del drink da eliminare:")) - 1;
+      if (!isNaN(index) && index >= 0 && index < listino.length) {
+        listino.splice(index, 1);
+        updateListino();
+      } else {
+        alert("Inserisci un numero valido!");
+      }
+    });
+
+    document.getElementById('Ordina-Drink').addEventListener('click', function () {
+      let index = parseInt(prompt("Inserisci il numero del drink da ordinare:")) - 1;
+      if (!isNaN(index) && index >= 0 && index < listino.length) {
+        ordini.push(listino[index]);
+        updateOrdinazioni();
+      } else {
+        alert("Inserisci un numero valido!");
+      }
+    });
+
+    document.getElementById('Cont-Drink').addEventListener('click', function () {
+      if (ordini.length > 0) {
+        ordini.pop();
+        updateOrdinazioni();
+      } else {
+        alert("Nessun ordine da eliminare!");
+      }
+    });
+
+    function updateListino() {
+      let listinoDiv = document.getElementById('listino');
+      listinoDiv.innerHTML = "";
+      listino.forEach((drink, index) => {
+        listinoDiv.innerHTML += `${index + 1}) ${drink}<br>`;
+      });
+    }
+
+    function updateOrdinazioni() {
+      let ordinazioniDiv = document.getElementById('ordinazioni');
+      ordinazioniDiv.innerHTML = "";
+      ordini.forEach((drink, index) => {
+        ordinazioniDiv.innerHTML += `${index + 1}) ${drink}<br>`;
+      });
+    }
+
+    updateListino();
+    updateOrdinazioni();
+  </script>
+</body>
+
+</html>
