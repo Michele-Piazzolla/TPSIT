@@ -88,16 +88,16 @@
       </a>
     </div>
   </nav>
-  <br><br>
+  <br><br><br><br>
   <div class="container">
     <div class="PrimoContenitore shadow-div">
       <div class="container text-center">
-        <h2>Azioni</h2>
+        <br><h2>Azioni</h2>
         <hr>
         <button id="Add-Drink" class="btn btn-info">Aggiungi Drink</button>
         <button id="Delete-Drink" class="btn btn-info">Elimina Drink</button>
         <button id="Ordina-Drink" class="btn btn-info">Ordina</button>
-        <button id="Cont-Drink" class="btn btn-info">Elimina Ordine</button>
+        <button id="Delete-Ordine" class="btn btn-info">Elimina Ordine</button>
       </div>
     </div>
   </div>
@@ -106,6 +106,7 @@
     <div class="col">
       <div class="PrimoContenitore shadow-div">
         <div class="container text-center">
+          <br><br>
           <h2>Listino Drink</h2>
           <hr>
           <div id="listino" class="result-container"></div>
@@ -122,7 +123,7 @@
       </div>
     </div>
   </div>
-
+  <br><br><br><br><br><br><br><br><br><br><br><br>
   <script>
     let listino = ["Mojito", "Cuba Libre", "Spritz", "Negroni", "Bellini"];
     let ordini = [];
@@ -136,12 +137,11 @@
     });
 
     document.getElementById('Delete-Drink').addEventListener('click', function () {
-      let index = parseInt(prompt("Inserisci il numero del drink da eliminare:")) - 1;
-      if (!isNaN(index) && index >= 0 && index < listino.length) {
-        listino.splice(index, 1);
+      if (listino.length > 0) {
+        listino.pop();
         updateListino();
       } else {
-        alert("Inserisci un numero valido!");
+        alert("Nessun ordine da eliminare!");
       }
     });
 
@@ -155,7 +155,7 @@
       }
     });
 
-    document.getElementById('Cont-Drink').addEventListener('click', function () {
+    document.getElementById('Delete-Ordine').addEventListener('click', function () {
       if (ordini.length > 0) {
         ordini.pop();
         updateOrdinazioni();
