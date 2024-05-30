@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas con 100 punti consecutivi</title>
+</head>
+<body>
+
+    <!-- Canvas per disegnare i punti -->
+    <canvas id="miaTELA" width="200" height="200" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML canvas tag.
+    </canvas>
+
+    <script>
+        // Recupera il canvas dall'elemento HTML
+        var c = document.getElementById("miaTELA");
+        // Ottiene il contesto di disegno 2D per il canvas
+        var ctx = c.getContext("2d");
+
+        // Distanza tra i punti
+        var size = 20;
+
+        // Loop per disegnare 100 punti
+        for (let i = 0; i < 10; i++) {  // Loop esterno per le righe
+            for (let j = 0; j < 10; j++) {  // Loop interno per le colonne
+                // Inizia un nuovo percorso per il disegno
+                ctx.beginPath();
+                // Disegna un cerchio (punto) alla posizione specificata
+                ctx.arc(j * size, i * size, 2, 0, 2 * Math.PI);
+                // Imposta il colore di riempimento del punto
+                ctx.fillStyle = 'black';
+                // Riempi il cerchio disegnato con il colore specificato
+                ctx.fill();
+            }
+        }
+    </script>
+
+</body>
+</html>

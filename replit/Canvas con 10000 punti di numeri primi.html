@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas con 10000 punti di numeri primi</title>
+</head>
+<body>
+
+    <!-- Canvas per disegnare i punti -->
+    <canvas id="miaTELA" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML canvas tag.
+    </canvas>
+
+    <script>
+        // Recupera il canvas dall'elemento HTML
+        var c = document.getElementById("miaTELA");
+        // Ottiene il contesto di disegno 2D per il canvas
+        var ctx = c.getContext("2d");
+
+        // Distanza tra i punti
+        var size = 10;
+
+        // Funzione per determinare se un numero è primo
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+            if (num % 2 === 0 || num % 3 === 0) return false;
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+            }
+            return true;
+        }
+
+        // Loop per disegnare 10000 punti (100 righe e 100 colonne)
+        for (let i = 0; i < 100; i++) {  // Loop esterno per le righe
+            for (let j = 0; j < 100; j++) {  // Loop interno per le colonne
+                // Calcola il numero associato alla posizione corrente
+                let num = i * 100 + j;
+                // Disegna il punto solo se il numero è primo
+                if (isPrime(num)) {
+                    // Inizia un nuovo percorso per il disegno
+                    ctx.beginPath();
+                    // Disegna un cerchio (punto) alla posizione specificata
+                    ctx.arc(j * size, i * size, 2, 0, 2 * Math.PI);
+                    // Imposta il colore di riempimento del punto
+                    ctx.fillStyle = 'black';
+                    // Riempi il cerchio disegnato con il colore specificato
+                    ctx.fill();
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
