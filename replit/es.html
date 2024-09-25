@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array in Box Div</title>
+    <style>
+        .box {
+            border: 1px solid red;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        esempio di stampa di un array in quadrati div nell'html
+    </div>
+
+    <script>
+        // Funzione per controllare se un numero è primo
+        function isPrime(num) {
+            if (num <= 1) return false; // 0 e 1 non sono primi
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false; // Divisibile per un numero diverso da 1 e se stesso
+            }
+            return true; // È primo
+        }
+
+        function generatePrimes(limit) {
+            const primes = [];
+            for (let i = 2; i <= limit; i++) {
+                if (isPrime(i)) {
+                    primes.push(i);
+                }
+            }
+            return primes;
+        }
+
+        function printArrayInDivs(arr) {
+            const container = document.getElementById('container'); //alla costante container associa il div container
+            arr.forEach(element => { //per ogni elemento dell'array 
+                const div = document.createElement('div'); //alla costante div associa l'elemento div
+                div.classList.add('box'); //al div aggiunge,associa la classe box
+                div.textContent = element; // associa alla costante div element
+                container.appendChild(div); //aggiunge l'elemento div alla fine del container
+            });
+        }
+
+        // Esempio di utilizzo
+        const myArray = generatePrimes(100); //dichiarazione array con limite 50
+        printArrayInDivs(myArray); //stampa array nei div
+    </script>
+   
+</body>
+</html>
